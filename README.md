@@ -1,62 +1,93 @@
 # Football Club Management Simulation
 
-A command-line football club management simulation built in Java using object-oriented design. The player manages resources, builds facilities, develops the club and works towards winning the championship.
+A Java-based command-line football club management simulation built using object-oriented design. The player manages resources, develops facilities, improves the club and works towards winning the championship.
+
+The project was designed around a modular simulation engine, with different entities responsible for producing, converting and consuming resources as the club develops.
 
 ## Demo
 
 A short demonstration video will be added here.
 
+The demonstration shows the simulation being run from the command line, including resource management, facility construction, simulation ticks and progression towards the championship.
+
 ## Overview
 
-The simulation models a football club as a resource-driven system. Each game tick updates the state of the club by running its producers, converters and consumers, while resource history can be tracked over time.
+The simulation models a football club as a resource-driven system.
 
-The main objective is to develop the club to Level 3, build enough Star Players and maintain sufficient Energy to play the championship match.
+Each game tick updates the state of the club by running its producers, converters and consumers. The player must balance resources such as money, energy and player development while investing in facilities and progressing the club towards the championship.
 
-## Features
+The main objective is to:
 
-- Command-line interface with command parsing
+1. Develop the club to Level 3.
+2. Build enough Star Players.
+3. Maintain sufficient Energy.
+4. Successfully play the championship match.
+
+## Key Features
+
+- Command-line interface with structured command parsing
 - Tick-based simulation engine
 - Resource production, conversion and consumption
 - Facility construction and club progression
-- Player and fitness management
+- Player development and fitness management
 - Star Player and Club Level progression
 - Championship gameplay and rewards
-- Save and load functionality using text files
-- Text-based resource history graphs
-- Debug/cheat command for rapidly testing game states
+- Save/load functionality using text files
+- Resource history graphs for monitoring simulation behaviour
+- Debug/cheat functionality for rapidly testing different game states
 
 ## Technical Design
 
-### Object-oriented architecture
+### Object-Oriented Architecture
 
-The simulation uses an inheritance-based entity model:
+The simulation uses an inheritance-based entity model to separate different behaviours within the game.
 
 - `Entity` provides shared functionality for simulation entities.
 - `Producer` represents entities that generate resources each tick.
-- `Converter` represents entities that transform one resource into another.
+- `Converter` represents entities that transform resources.
 - `Consumer` represents entities that consume resources.
-- Concrete classes such as `Gym`, `Academy`, `Workshop`, `Canteen`, `Coach`, `Planner` and `Club` extend these abstractions.
+- Concrete implementations such as `Gym`, `Academy`, `Workshop`, `Canteen`, `Coach`, `Planner` and `Club` build on these abstractions.
 
-### Simulation engine
+This structure allows different entities to share common behaviour while implementing their own resource-management logic.
 
-`Engine` coordinates each simulation tick, updating producers, converters and consumers before applying resource degradation and recording the resulting state.
+### Simulation Engine
 
-### Command parsing
+`Engine` coordinates the simulation by processing each game tick.
 
-User input is converted into command objects through the `Parser`. Separate command classes handle operations such as building entities, advancing ticks, displaying information, graphing resources, saving/loading and playing the championship.
+During a tick, producers, converters and consumers are updated before resource degradation is applied and the resulting state is recorded. This provides a central mechanism for progressing the simulation consistently.
+
+### Command Parsing
+
+User input is processed by `Parser` and converted into command objects.
+
+Separate command classes handle operations including:
+
+- Building facilities
+- Advancing simulation ticks
+- Displaying resource information
+- Generating resource graphs
+- Saving and loading game states
+- Playing the championship
+
+This separates user interaction from the underlying simulation logic.
 
 ### Persistence
 
-`SaveLoadManager` serialises the simulation state to text files and reconstructs the state when a saved game is loaded.
+`SaveLoadManager` provides save and load functionality by serialising the simulation state to text files and reconstructing the state when a saved game is loaded.
 
-## Technologies
+## Technologies and Concepts
 
 - Java
 - Object-oriented programming
-- Inheritance and polymorphism
-- Collections and enums
+- Abstraction
+- Inheritance
+- Polymorphism
+- Collections
+- Enums
 - File I/O
 - Command-line interfaces
+- State management
+- Simulation design
 
 ## Running the Project
 
@@ -64,13 +95,24 @@ User input is converted into command objects through the `Parser`. Separate comm
 
 - Java Development Kit (JDK) 21 or later
 
-### Run
+### Using the run script
+
+From the project root:
 
 ```bash
 ./run.sh
 ```
 
-Alternatively, compile and run manually:
+If required, make the script executable first:
+
+```bash
+chmod +x run.sh
+./run.sh
+```
+
+### Manual compilation
+
+Alternatively:
 
 ```bash
 mkdir -p out data
@@ -97,6 +139,7 @@ play Manchester United
 src/
 └── org/uob/a2/
     ├── Main.java
+    │
     ├── engine/
     │   ├── Consumer.java
     │   ├── Context.java
@@ -107,15 +150,16 @@ src/
     │   ├── SaveLoadManager.java
     │   ├── SimulationState.java
     │   └── Tickable.java
+    │
     ├── model/
     │   ├── Academy.java
     │   ├── Canteen.java
     │   ├── Club.java
     │   ├── Coach.java
-    │   ├── Gym.java
     │   ├── Planner.java
     │   ├── ResourceType.java
     │   └── Workshop.java
+    │
     └── parser/
         ├── BuildCommand.java
         ├── CheatCommand.java
@@ -132,13 +176,6 @@ src/
         └── TickCommand.java
 ```
 
-## Notes
+## Development and Learning
 
-This repository contains the implementation of the project. University-provided assessment tests and coursework scaffolding are intentionally not included in the public repository.
-
-## Future Improvements
-
-- Add a graphical interface
-- Introduce richer match outcomes and opponent difficulty
-- Add persistent player profiles and squad management
-- Expand automated tests with project-specific test cases
+This project provided practical experience designing a larger Java application using object-oriented principles rather than implementing functionality in a single program.
