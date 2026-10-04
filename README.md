@@ -4,12 +4,6 @@ A Java-based command-line football club management simulation built using object
 
 The project was designed around a modular simulation engine, with different entities responsible for producing, converting and consuming resources as the club develops.
 
-## Demo
-
-A short demonstration video will be added here.
-
-The demonstration shows the simulation being run from the command line, including resource management, facility construction, simulation ticks and progression towards the championship.
-
 ## Overview
 
 The simulation models a football club as a resource-driven system.
