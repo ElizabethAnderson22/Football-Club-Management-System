@@ -1,0 +1,15 @@
+# Java build output
+out/
+*.class
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# macOS
+.DS_Store
+
+# Generated simulation saves/data
+/data/*.txt
+/data/*.csv
